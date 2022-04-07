@@ -35,14 +35,34 @@ class NumbersTest {
     public void twoDigitNotEqual() {
         char douDigit = numbers.isDouDigit("13");
         assertEquals('n', douDigit);
+    }
 
-        char douDigit1 = numbers.isDouDigit("31");
-        assertEquals('n', douDigit1);
+    @Test
+    public void twoDigitNotEqual1() {
+        char douDigit = numbers.isDouDigit("12345678");
+        assertEquals('n', douDigit);
+    }
 
-        char douDigit2 = numbers.isDouDigit("74");
-        assertEquals('n', douDigit2);
+    @Test
+    public void twoDigitNotEqual2() {
+        char douDigit = numbers.isDouDigit("31");
+        assertEquals('n', douDigit);
+    }
+
+
+    @Test
+    public void DigitNotEqual() {
+        char douDigit = numbers.isDouDigit("1397453");
+        assertEquals('y', douDigit);
+
+//        char douDigit1 = numbers.isDouDigit("31");
+//        assertEquals('n', douDigit1);
+
+//        char douDigit2 = numbers.isDouDigit("74");
+//        assertEquals('n', douDigit2);
 
     }
+
     @Test
     public void twoDigitEqual() {
         char douDigit = numbers.isDouDigit("11");
@@ -51,10 +71,24 @@ class NumbersTest {
         char douDigit1 = numbers.isDouDigit("22");
         assertEquals('y', douDigit1);
 
-        char douDigit2 = numbers.isDouDigit("77");
+        char douDigit2 = numbers.isDouDigit("1397453");
         assertEquals('y', douDigit2);
 
     }
+
+    @Test
+    public void DigitEqual() {
+        char douDigit = numbers.isDouDigit("1111");
+        assertEquals('y', douDigit);
+
+        char douDigit1 = numbers.isDouDigit("2222");
+        assertEquals('y', douDigit1);
+
+        char douDigit2 = numbers.isDouDigit("7777");
+        assertEquals('y', douDigit2);
+
+    }
+
 
     @Test
     public void isValidNumberTest() {
@@ -70,6 +104,24 @@ class NumbersTest {
         String number3 = "1a2";
         boolean validNumber3 = numbers.isValidNumber(number3);
         assertFalse(validNumber3);
+    }
+
+    @Test
+    void plusNumberOfHome() {
+        numbers.plusNumberOfHome('1');
+        numbers.plusNumberOfHome('1');
+        numbers.plusNumberOfHome('1');
+        Integer actual = numbers.arrayNumber[1];
+        assertEquals(3, actual);
+
+        numbers.plusNumberOfHome('2');
+        Integer actual1 = numbers.arrayNumber[2];
+        assertEquals(1, actual1);
+
+        numbers.plusNumberOfHome('0');
+        numbers.plusNumberOfHome('0');
+        Integer actual2 = numbers.arrayNumber[0];
+        assertEquals(2, actual2);
     }
 
 }

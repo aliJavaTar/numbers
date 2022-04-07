@@ -1,7 +1,8 @@
 import java.util.regex.Pattern;
 
 public class Numbers {
-    char[] arrayNumber = new char[10];
+
+    int[] arrayNumber = new int[10];
 
     /*
     array number
@@ -21,16 +22,32 @@ public class Numbers {
 
      */
     public char isDouDigit(String number) {
+        placement(number);
+
+        for (int i : arrayNumber) {
+            if (i > 1)
+                return 'y';
+        }
+        return 'n';
+    }
+
+    private void placement(String number) {
         if (isValidNumber(number))
         {
-            for (int index = 0; index < number.length(); index++)
-            {
+            for (int index = 0; index < number.length(); index++) {
                 char num = number.charAt(index);
-                arrayNumber[num] = num;
+                plusNumberOfHome(num);
             }
-        }
+        } else System.out.println("just Enter digit between [ 0 ] and [ 9 ]");
+    }
 
-        return 'n';
+    public void plusNumberOfHome(char character) {
+        Integer integer = convertToInteger(character);
+        arrayNumber[integer]++;
+    }
+
+    public Integer convertToInteger(char value) {
+        return (int) value - 48;
     }
 
     public boolean isValidNumber(String text) {
